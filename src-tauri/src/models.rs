@@ -6,6 +6,7 @@ use serde_json::Value;
 pub enum NodeType {
     Start,
     Delay,
+    PlaySpotifyPlaylist,
     OpenApp,
     OpenBrowser,
     OpenUrl,

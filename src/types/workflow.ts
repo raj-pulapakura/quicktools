@@ -6,7 +6,8 @@ export type NodeType =
   | "open_url"
   | "open_terminal_at_path"
   | "execute_command"
-  | "open_folder_in_finder";
+  | "open_folder_in_finder"
+  | "play_spotify_playlist";
 
 export type ActionNodeType = Exclude<NodeType, "start">;
 

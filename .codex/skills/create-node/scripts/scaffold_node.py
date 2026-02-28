@@ -149,11 +149,32 @@ def insert_in_block(text: str, block_start: str, block_end: str, entry_line: str
     if entry_line.strip() in {line.strip() for line in block_body.splitlines()}:
         return text
 
+    block_body = ensure_last_nonempty_line_has_trailing_comma(block_body)
+
     if block_body and not block_body.endswith("\n"):
         block_body += "\n"
 
     block_body += entry_line
     return text[:start_index] + block_body + text[end_index:]
+
+
+def ensure_last_nonempty_line_has_trailing_comma(block_body: str) -> str:
+    lines = block_body.splitlines(keepends=True)
+    for index in range(len(lines) - 1, -1, -1):
+        stripped = lines[index].strip()
+        if not stripped:
+            continue
+
+        if stripped.endswith(","):
+            return "".join(lines)
+
+        if lines[index].endswith("\n"):
+            lines[index] = lines[index].rstrip("\n") + ",\n"
+        else:
+            lines[index] = lines[index] + ","
+        return "".join(lines)
+
+    return block_body
 
 
 def add_node_type_literal(workflow_types_text: str, node_type: str) -> str:

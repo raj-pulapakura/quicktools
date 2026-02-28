@@ -7,6 +7,7 @@ import { renderOpenBrowserEditor } from "./editors/openBrowserEditor";
 import { renderOpenFolderInFinderEditor } from "./editors/openFolderInFinderEditor";
 import { renderOpenTerminalAtPathEditor } from "./editors/openTerminalAtPathEditor";
 import { renderOpenUrlEditor } from "./editors/openUrlEditor";
+import { renderPlaySpotifyPlaylistEditor } from "./editors/playSpotifyPlaylistEditor";
 
 export const actionNodeEditorRenderers: Record<ActionNodeType, ActionNodeEditorRenderer> = {
   delay: renderDelayEditor,
@@ -15,5 +16,6 @@ export const actionNodeEditorRenderers: Record<ActionNodeType, ActionNodeEditorR
   open_url: renderOpenUrlEditor,
   open_terminal_at_path: renderOpenTerminalAtPathEditor,
   execute_command: renderExecuteCommandEditor,
-  open_folder_in_finder: renderOpenFolderInFinderEditor
+  open_folder_in_finder: renderOpenFolderInFinderEditor,
+  play_spotify_playlist: renderPlaySpotifyPlaylistEditor,
 };

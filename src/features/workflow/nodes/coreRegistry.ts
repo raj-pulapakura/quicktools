@@ -6,6 +6,7 @@ import { openBrowserDefinition } from "./definitions/openBrowserDefinition";
 import { openFolderInFinderDefinition } from "./definitions/openFolderInFinderDefinition";
 import { openTerminalAtPathDefinition } from "./definitions/openTerminalAtPathDefinition";
 import { openUrlDefinition } from "./definitions/openUrlDefinition";
+import { playSpotifyPlaylistDefinition } from "./definitions/playSpotifyPlaylistDefinition";
 import { isActionNodeType, type ActionNodeCoreDefinition } from "./types";
 
 export const ACTION_NODE_TYPES = [
@@ -15,7 +16,8 @@ export const ACTION_NODE_TYPES = [
   "open_url",
   "open_terminal_at_path",
   "execute_command",
-  "open_folder_in_finder"
+  "open_folder_in_finder",
+  "play_spotify_playlist",
 ] as const satisfies readonly ActionNodeType[];
 
 type MissingActionNodeType = Exclude<ActionNodeType, (typeof ACTION_NODE_TYPES)[number]>;
@@ -29,7 +31,8 @@ const actionNodeCoreDefinitions = [
   openUrlDefinition,
   openTerminalAtPathDefinition,
   executeCommandDefinition,
-  openFolderInFinderDefinition
+  openFolderInFinderDefinition,
+  playSpotifyPlaylistDefinition,
 ] as const satisfies readonly ActionNodeCoreDefinition[];
 
 const actionNodeCoreDefinitionMap = new Map<ActionNodeType, ActionNodeCoreDefinition>();

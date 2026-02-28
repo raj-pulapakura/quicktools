@@ -168,6 +168,7 @@ fn execute_node(node: &WorkflowNode) -> NodeExecutionResult {
     let result = match node.node_type {
         NodeType::Start => Ok("Start node acknowledged".to_string()),
         NodeType::Delay => delay(&node.params),
+        NodeType::PlaySpotifyPlaylist => play_spotify_playlist(&node.params),
         NodeType::OpenApp => open_app(&node.params),
         NodeType::OpenBrowser => open_browser(),
         NodeType::OpenUrl => open_urls(&node.params),
@@ -237,6 +238,31 @@ fn open_app(params: &Value) -> Result<String, String> {
 fn open_browser() -> Result<String, String> {
     run_open_command(&["about:blank"])?;
     Ok("Opened default browser".to_string())
+}
+
+fn play_spotify_playlist(params: &Value) -> Result<String, String> {
+    let query = params
+        .get("query")
+        .and_then(Value::as_str)
+        .map(str::trim)
+        .filter(|value| !value.is_empty())
+        .ok_or_else(|| "Play Spotify Playlist requires query".to_string())?;
+
+    let open_mode = params
+        .get("openMode")
+        .and_then(Value::as_str)
+        .map(str::trim)
+        .unwrap_or("app");
+
+    let encoded_query = encode_for_url_component(query);
+    let target = if open_mode.eq_ignore_ascii_case("web") {
+        format!("https://open.spotify.com/search/{encoded_query}%20playlist")
+    } else {
+        format!("spotify:search:{encoded_query}%20playlist")
+    };
+
+    run_open_command(&[&target])?;
+    Ok(format!("Opened Spotify search for playlist query: {query}"))
 }
 
 fn open_urls(params: &Value) -> Result<String, String> {
@@ -370,4 +396,23 @@ fn escape_for_applescript(text: &str) -> String {
 
 fn escape_for_shell(text: &str) -> String {
     text.replace("'", "'\\''")
+}
+
+fn encode_for_url_component(text: &str) -> String {
+    let mut encoded = String::with_capacity(text.len());
+    for ch in text.chars() {
+        if ch.is_ascii_alphanumeric() || matches!(ch, '-' | '_' | '.' | '~') {
+            encoded.push(ch);
+        } else if ch.is_ascii_whitespace() {
+            encoded.push_str("%20");
+        } else {
+            let mut buffer = [0u8; 4];
+            for byte in ch.encode_utf8(&mut buffer).as_bytes() {
+                encoded.push('%');
+                encoded.push_str(&format!("{:02X}", byte));
+            }
+        }
+    }
+
+    encoded
 }
