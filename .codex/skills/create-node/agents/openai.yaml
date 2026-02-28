@@ -1,0 +1,4 @@
+interface:
+  display_name: "Create Node"
+  short_description: "Scaffold a workflow node fast"
+  default_prompt: "Use $create-node to scaffold a new workflow node from: <node-description>."
