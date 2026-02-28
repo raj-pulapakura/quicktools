@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
-    "tauri:build": "tauri build"
+    "tauri:build": "tauri build",
+    "check:node-registry": "rm -rf .tmp-node-registry-check && tsc --target ES2020 --module commonjs --moduleResolution node --skipLibCheck --strict --outDir .tmp-node-registry-check scripts/node_registry_checks.ts src/features/workflow/nodes/coreRegistry.ts src/features/workflow/nodes/definitions/*.ts src/features/workflow/nodes/types.ts src/types/workflow.ts && node -e \"require('fs').writeFileSync('.tmp-node-registry-check/package.json', '{\\\"type\\\":\\\"commonjs\\\"}\\\\n')\" && node .tmp-node-registry-check/scripts/node_registry_checks.js && rm -rf .tmp-node-registry-check"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.0.0",

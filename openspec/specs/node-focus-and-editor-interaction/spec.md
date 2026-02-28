@@ -1,4 +1,9 @@
-## ADDED Requirements
+# node-focus-and-editor-interaction Specification
+
+## Purpose
+Define deterministic node focus, editor visibility, and drag/pan interaction semantics in the workflow canvas.
+
+## Requirements
 
 ### Requirement: Node click SHALL focus node and open its editor
 The system SHALL set the clicked node as the focused node whenever a user clicks a node on the workflow canvas. The parameter editor panel SHALL render the focused node's configuration immediately after focus is set.
@@ -45,3 +50,17 @@ The system SHALL preserve current Space+drag pan behavior and SHALL not change n
 - **WHEN** a node is focused and the user holds Space while dragging on the pane
 - **THEN** the canvas pans
 - **THEN** the previously focused node remains focused after the pan gesture
+
+### Requirement: Focus and selection semantics SHALL remain stable after editor modularization
+Refactoring node-editor rendering into registry-driven modules SHALL NOT change existing node focus, edge selection, and pane blur interaction semantics defined by this capability.
+
+#### Scenario: Node click focus behavior remains unchanged after refactor
+- **WHEN** a user clicks a non-START node after modularization
+- **THEN** that node becomes focused
+- **THEN** the editor remains open for the focused node
+- **THEN** no pane-level blur clears focus during the same interaction
+
+#### Scenario: Edge selection remains isolated from node focus
+- **WHEN** a user selects an edge after modularization
+- **THEN** the selected edge becomes active
+- **THEN** focused node selection is cleared consistently with prior behavior
