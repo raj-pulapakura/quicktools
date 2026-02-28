@@ -25,9 +25,3 @@ npm run tauri:build
 - v1 is macOS-only.
 - Terminal actions target `Terminal.app`.
 - Execution respects workflow dependencies and runs dependency-independent nodes in parallel batches.
-
-## Public Deployment
-
-- macOS release workflow: `.github/workflows/release-macos.yml`
-- release and signing setup guide: `docs/release.md`
-- Vercel landing page source: `landing/`
