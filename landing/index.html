@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickTools | Workflow Launcher for macOS</title>
+    <meta
+      name="description"
+      content="QuickTools is a visual macOS workflow launcher. Download the latest build and automate repeatable actions."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <p class="eyebrow">QuickTools</p>
+        <h1>Build and run macOS workflows in seconds.</h1>
+        <p class="lede">
+          Create flow-based automations for launching apps, opening URLs, running terminal commands, and more.
+        </p>
+
+        <div class="actions">
+          <a id="download-arm" class="button primary" href="#" aria-disabled="true">
+            Download for Apple Silicon
+          </a>
+          <a id="download-intel" class="button" href="#" aria-disabled="true">
+            Download for Intel Mac
+          </a>
+          <a id="release-notes" class="button ghost" href="#" target="_blank" rel="noreferrer">
+            Release Notes
+          </a>
+        </div>
+
+        <p id="status" class="status">Loading latest release...</p>
+      </section>
+
+      <section class="details">
+        <h2>What you get</h2>
+        <ul>
+          <li>Visual canvas for workflow editing</li>
+          <li>Reusable action nodes with parameters</li>
+          <li>Local execution with dependency-aware ordering</li>
+          <li>macOS desktop app (Tauri)</li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="./config.js"></script>
+    <script>
+      const repo = window.QUICKTOOLS_REPO || "";
+      const statusEl = document.getElementById("status");
+      const armBtn = document.getElementById("download-arm");
+      const intelBtn = document.getElementById("download-intel");
+      const notesBtn = document.getElementById("release-notes");
+
+      const setButton = (button, href, enabled) => {
+        button.href = href;
+        button.setAttribute("aria-disabled", enabled ? "false" : "true");
+        if (!enabled) {
+          button.classList.add("disabled");
+        } else {
+          button.classList.remove("disabled");
+        }
+      };
+
+      const findAsset = (assets, predicates) =>
+        assets.find((asset) => predicates.some((predicate) => predicate(asset.name.toLowerCase())));
+
+      const hasPlaceholderRepo =
+        !repo || repo.includes("YOUR_GITHUB_USERNAME") || repo.includes("YOUR_REPO");
+
+      if (hasPlaceholderRepo) {
+        statusEl.textContent = "Set your repo slug in landing/config.js to enable downloads.";
+        setButton(armBtn, "#", false);
+        setButton(intelBtn, "#", false);
+        setButton(notesBtn, "#", false);
+      } else {
+        const latestApi = `https://api.github.com/repos/${repo}/releases/latest`;
+        const releasesPage = `https://github.com/${repo}/releases`;
+
+        fetch(latestApi)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`GitHub API returned ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((release) => {
+            const assets = Array.isArray(release.assets) ? release.assets : [];
+            const armAsset = findAsset(assets, [
+              (name) => name.endsWith(".dmg") && name.includes("aarch64"),
+              (name) => name.endsWith(".dmg") && name.includes("arm64")
+            ]);
+            const intelAsset = findAsset(assets, [
+              (name) => name.endsWith(".dmg") && name.includes("x86_64"),
+              (name) => name.endsWith(".dmg") && name.includes("x64")
+            ]);
+
+            setButton(armBtn, armAsset?.browser_download_url || releasesPage, !!armAsset);
+            setButton(intelBtn, intelAsset?.browser_download_url || releasesPage, !!intelAsset);
+            setButton(notesBtn, release.html_url || releasesPage, true);
+
+            if (!armAsset || !intelAsset) {
+              statusEl.textContent =
+                "Latest release found, but one or more macOS assets are missing. See release notes.";
+            } else {
+              statusEl.textContent = `Latest release: ${release.tag_name}`;
+            }
+          })
+          .catch((error) => {
+            statusEl.textContent = `Unable to load release data: ${error.message}`;
+            setButton(armBtn, releasesPage, false);
+            setButton(intelBtn, releasesPage, false);
+            setButton(notesBtn, releasesPage, true);
+          });
+      }
+    </script>
+  </body>
+</html>
