@@ -1,0 +1,785 @@
+:root {
+  --bg: #f4f6fb;
+  --bg-grad-1: #e9f0ff;
+  --bg-grad-2: #eef8ff;
+  --bg-grad-3-a: #f6f8fc;
+  --bg-grad-3-b: #eef2f8;
+  --surface: #ffffff;
+  --surface-2: #f8faff;
+  --line: #d8deea;
+  --line-strong: #c2cbde;
+  --text: #171f2e;
+  --muted: #6f7c96;
+  --accent: #3a72ff;
+  --accent-soft: #e9efff;
+  --start: #12b886;
+  --danger: #e03131;
+  --sidebar-bg: rgba(252, 253, 255, 0.92);
+  --sidebar-inset-line: rgba(255, 255, 255, 0.7);
+  --workflow-active-border: #cfd8ec;
+  --workflow-active-bg: #f4f7ff;
+  --hover-border: #b4c2dd;
+  --hover-shadow: 0 6px 16px rgba(25, 39, 71, 0.12);
+  --workflow-remove-border: #dbe2f0;
+  --workflow-remove-text: #7e8ba5;
+  --header-bg: rgba(255, 255, 255, 0.82);
+  --toolbar-bg: rgba(248, 251, 255, 0.86);
+  --input-bg: #fff;
+  --input-focus-border: #86a6ff;
+  --input-focus-ring: 0 0 0 3px rgba(58, 114, 255, 0.16);
+  --canvas-grad-1: #edf3ff;
+  --canvas-grad-2: #f0f7ff;
+  --canvas-grad-3-a: #f6f9ff;
+  --canvas-grad-3-b: #eff4fb;
+  --node-border: #cfd9eb;
+  --node-bg: rgba(255, 255, 255, 0.95);
+  --node-shadow: 0 4px 18px rgba(21, 39, 79, 0.12);
+  --node-hover-shadow: 0 8px 22px rgba(22, 40, 82, 0.14);
+  --node-focus-border: #88a9ff;
+  --node-focus-shadow: 0 0 0 3px rgba(58, 114, 255, 0.2), 0 8px 24px rgba(26, 43, 82, 0.16);
+  --node-start-border: #84d8bd;
+  --node-start-bg: #f3fffb;
+  --node-pill-border: #d7e0f1;
+  --node-pill-bg: #f4f7ff;
+  --node-pill-text: #4a5a78;
+  --node-start-pill-border: #9ce4cd;
+  --node-start-pill-bg: #e9fff6;
+  --node-start-pill-text: #17785a;
+  --node-summary-text: #223251;
+  --handle-border: #fff;
+  --handle-shadow: 0 0 0 1px rgba(49, 76, 130, 0.55), 0 2px 5px rgba(0, 0, 0, 0.16);
+  --handle-target-bg: #5f87ff;
+  --handle-source-bg: #12b886;
+  --edge-stroke: #4f6aa5;
+  --controls-bg: rgba(255, 255, 255, 0.95);
+  --controls-button-bg: #fff;
+  --controls-active-bg: #eef3ff;
+  --controls-active-text: #2d5fe0;
+  --minimap-mask-fill: rgba(58, 114, 255, 0.12);
+  --toggle-bg: rgba(255, 255, 255, 0.97);
+  --editor-bg: rgba(251, 253, 255, 0.92);
+  --editor-empty-border: #c5d2ea;
+  --editor-empty-bg: #f9fbff;
+  --editor-title: #566586;
+  --editor-label: #6d7b98;
+  --hint-border: #cae7dc;
+  --hint-bg: #effff8;
+  --hint-text: #2a6c55;
+  --menu-border: #cfd9eb;
+  --menu-bg: rgba(255, 255, 255, 0.98);
+  --menu-shadow: 0 14px 34px rgba(18, 34, 68, 0.2);
+  --menu-item-text: #223251;
+  --menu-item-hover: #eef3ff;
+  --menu-danger-text: #b02a2a;
+  --menu-danger-hover: #fff1f1;
+  --danger-border: #f4b3b3;
+  --danger-bg: #fff4f4;
+  --empty-bg: #fff;
+  --shadow-sm: 0 1px 2px rgba(15, 25, 45, 0.08), 0 6px 18px rgba(15, 25, 45, 0.06);
+  --shadow-md: 0 4px 16px rgba(15, 25, 45, 0.1), 0 20px 34px rgba(15, 25, 45, 0.08);
+
+  font-family: "Avenir Next", "Segoe UI Variable Text", "SF Pro Text", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+:root[data-theme="dark"] {
+  --bg: #0e1421;
+  --bg-grad-1: #17243f;
+  --bg-grad-2: #142735;
+  --bg-grad-3-a: #0f1726;
+  --bg-grad-3-b: #0a121f;
+  --surface: #182134;
+  --surface-2: #1f2b42;
+  --line: #2a3855;
+  --line-strong: #33486f;
+  --text: #e5edf9;
+  --muted: #9bacca;
+  --accent: #8fb1ff;
+  --accent-soft: #24385e;
+  --start: #23d49e;
+  --danger: #ff7d7d;
+  --sidebar-bg: rgba(11, 18, 31, 0.93);
+  --sidebar-inset-line: rgba(255, 255, 255, 0.04);
+  --workflow-active-border: #3a4f7a;
+  --workflow-active-bg: #1c2942;
+  --hover-border: #48608f;
+  --hover-shadow: 0 8px 18px rgba(3, 8, 15, 0.5);
+  --workflow-remove-border: #2a3a5a;
+  --workflow-remove-text: #95a7c7;
+  --header-bg: rgba(16, 24, 39, 0.9);
+  --toolbar-bg: rgba(18, 28, 45, 0.88);
+  --input-bg: #111a2b;
+  --input-focus-border: #8fb1ff;
+  --input-focus-ring: 0 0 0 3px rgba(143, 177, 255, 0.24);
+  --canvas-grad-1: #182a48;
+  --canvas-grad-2: #122739;
+  --canvas-grad-3-a: #101c2f;
+  --canvas-grad-3-b: #0d1728;
+  --node-border: #39517f;
+  --node-bg: rgba(16, 25, 40, 0.95);
+  --node-shadow: 0 4px 18px rgba(2, 8, 16, 0.45);
+  --node-hover-shadow: 0 8px 24px rgba(2, 9, 20, 0.6);
+  --node-focus-border: #8fb1ff;
+  --node-focus-shadow: 0 0 0 3px rgba(143, 177, 255, 0.22), 0 8px 26px rgba(3, 11, 22, 0.58);
+  --node-start-border: #2fa983;
+  --node-start-bg: #102b26;
+  --node-pill-border: #3d537d;
+  --node-pill-bg: #1f2f4d;
+  --node-pill-text: #c5d4ef;
+  --node-start-pill-border: #2f9c79;
+  --node-start-pill-bg: #153730;
+  --node-start-pill-text: #95f0d2;
+  --node-summary-text: #d9e5fa;
+  --handle-border: #0e1524;
+  --handle-shadow: 0 0 0 1px rgba(118, 147, 200, 0.6), 0 2px 5px rgba(0, 0, 0, 0.4);
+  --handle-target-bg: #8fb1ff;
+  --handle-source-bg: #23d49e;
+  --edge-stroke: #6f8abf;
+  --controls-bg: rgba(17, 23, 37, 0.95);
+  --controls-button-bg: #141d30;
+  --controls-active-bg: #263b63;
+  --controls-active-text: #d7e4ff;
+  --minimap-mask-fill: rgba(52, 77, 129, 0.35);
+  --toggle-bg: rgba(20, 29, 48, 0.96);
+  --editor-bg: rgba(14, 22, 36, 0.92);
+  --editor-empty-border: #3b5077;
+  --editor-empty-bg: #151f33;
+  --editor-title: #c6d5ef;
+  --editor-label: #adbedc;
+  --hint-border: #2f6f5a;
+  --hint-bg: #16382f;
+  --hint-text: #96ebcf;
+  --menu-border: #39517f;
+  --menu-bg: rgba(16, 25, 40, 0.98);
+  --menu-shadow: 0 14px 34px rgba(1, 6, 14, 0.62);
+  --menu-item-text: #d9e5fa;
+  --menu-item-hover: #253758;
+  --menu-danger-text: #ffabab;
+  --menu-danger-hover: #4d2028;
+  --danger-border: #7c3d49;
+  --danger-bg: #3a1b22;
+  --empty-bg: #182134;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 420px at -10% -15%, var(--bg-grad-1) 0%, transparent 60%),
+    radial-gradient(700px 340px at 110% -20%, var(--bg-grad-2) 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg-grad-3-a) 0%, var(--bg-grad-3-b) 100%);
+  color: var(--text);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--line);
+  box-shadow: inset -1px 0 0 var(--sidebar-inset-line);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sidebar h2 {
+  margin: 0;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.workflow-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  overflow: auto;
+}
+
+.workflow-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: stretch;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  background: transparent;
+  transition: border-color 0.16s ease, background 0.16s ease;
+}
+
+.workflow-item.active {
+  border-color: var(--workflow-active-border);
+  background: var(--workflow-active-bg);
+}
+
+.workflow-select,
+.workflow-remove,
+.header-actions button,
+.toolbar-node-actions button,
+.sidebar-header button,
+button.danger {
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.workflow-select:hover,
+.workflow-remove:hover,
+.header-actions button:hover,
+.toolbar-node-actions button:hover,
+.sidebar-header button:hover,
+button.danger:hover {
+  transform: translateY(-1px);
+  border-color: var(--hover-border);
+  box-shadow: var(--hover-shadow);
+}
+
+.workflow-select {
+  border: 0;
+  box-shadow: none;
+  border-radius: 12px 0 0 12px;
+  background: transparent;
+  text-align: left;
+  padding: 0.62rem 0.72rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.workflow-remove {
+  border: 0;
+  box-shadow: none;
+  border-left: 1px solid var(--workflow-remove-border);
+  border-radius: 0 12px 12px 0;
+  background: transparent;
+  padding: 0.62rem 0.58rem;
+  font-size: 0.88rem;
+  color: var(--workflow-remove-text);
+}
+
+.main-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.95rem 1.2rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--header-bg);
+  backdrop-filter: blur(10px);
+}
+
+.main-header h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.main-header p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.header-actions button {
+  padding: 0.5rem 0.86rem;
+  font-weight: 600;
+}
+
+.theme-mode-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.theme-mode-control select {
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--input-bg);
+  color: var(--text);
+  padding: 0.38rem 0.5rem;
+  min-width: 108px;
+}
+
+.theme-mode-control select:focus {
+  border-color: var(--input-focus-border);
+  box-shadow: var(--input-focus-ring);
+  outline: none;
+}
+
+.workflow-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+  padding: 0.8rem 1.2rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--toolbar-bg);
+}
+
+.workflow-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 0.58rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.workflow-toolbar input,
+.node-editor-form input,
+.node-editor-form textarea,
+.node-editor-form select {
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--input-bg);
+  color: var(--text);
+  padding: 0.52rem 0.62rem;
+  outline: none;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.workflow-toolbar input:focus,
+.node-editor-form input:focus,
+.node-editor-form textarea:focus,
+.node-editor-form select:focus {
+  border-color: var(--input-focus-border);
+  box-shadow: var(--input-focus-ring);
+}
+
+.workflow-toolbar input {
+  width: 320px;
+}
+
+.toolbar-node-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.toolbar-node-actions button {
+  padding: 0.42rem 0.58rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: var(--surface-2);
+}
+
+.toolbar-node-actions button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.editor-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  min-height: 0;
+  flex: 1;
+}
+
+.canvas-wrap {
+  min-height: 600px;
+  border-right: 1px solid var(--line);
+  background:
+    radial-gradient(620px 280px at 20% 8%, var(--canvas-grad-1) 0%, transparent 70%),
+    radial-gradient(620px 280px at 85% 0%, var(--canvas-grad-2) 0%, transparent 72%),
+    linear-gradient(180deg, var(--canvas-grad-3-a) 0%, var(--canvas-grad-3-b) 100%);
+}
+
+.canvas-wrap .react-flow {
+  height: 100%;
+}
+
+.canvas-wrap .react-flow__renderer {
+  background-image: none;
+}
+
+.react-flow__node.workflow-node-shell {
+  cursor: pointer !important;
+}
+
+.react-flow__node.workflow-node-shell.dragging {
+  cursor: grabbing;
+}
+
+.workflow-canvas-node {
+  position: relative;
+  min-width: 234px;
+  max-width: 266px;
+  cursor: inherit;
+  padding: 0.7rem 0.72rem;
+  border: 1px solid var(--node-border);
+  border-radius: 16px;
+  background: var(--node-bg);
+  box-shadow: var(--node-shadow);
+  transition: box-shadow 0.12s ease, border-color 0.12s ease;
+}
+
+.workflow-canvas-node:hover {
+  box-shadow: var(--node-hover-shadow);
+}
+
+.workflow-canvas-node.focused {
+  border-color: var(--node-focus-border);
+  box-shadow: var(--node-focus-shadow);
+}
+
+.workflow-canvas-node.draggable-focus {
+  cursor: grab;
+}
+
+.workflow-canvas-node.start {
+  border-color: var(--node-start-border);
+  background: var(--node-start-bg);
+}
+
+.workflow-canvas-node-type {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 0.52rem;
+  border: 1px solid var(--node-pill-border);
+  border-radius: 999px;
+  background: var(--node-pill-bg);
+  padding: 0.15rem 0.5rem;
+  font-size: 0.67rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--node-pill-text);
+}
+
+.workflow-canvas-node.start .workflow-canvas-node-type {
+  border-color: var(--node-start-pill-border);
+  background: var(--node-start-pill-bg);
+  color: var(--node-start-pill-text);
+}
+
+.workflow-canvas-node-summary {
+  font-size: 0.87rem;
+  line-height: 1.25;
+  font-weight: 600;
+  color: var(--node-summary-text);
+  word-break: break-word;
+}
+
+.workflow-handle {
+  width: 18px;
+  height: 18px;
+  border-radius: 99px;
+  border: 2px solid var(--handle-border);
+  box-shadow: var(--handle-shadow);
+}
+
+.workflow-handle-target {
+  background: var(--handle-target-bg);
+}
+
+.workflow-handle-source {
+  background: var(--handle-source-bg);
+}
+
+.react-flow__handle-top.workflow-handle {
+  top: -10px;
+}
+
+.react-flow__handle-bottom.workflow-handle {
+  bottom: -10px;
+}
+
+.react-flow__handle-left.workflow-handle {
+  left: -10px;
+}
+
+.react-flow__handle-right.workflow-handle {
+  right: -10px;
+}
+
+.react-flow__edge-path {
+  stroke: var(--edge-stroke);
+  stroke-width: 2.3;
+}
+
+.react-flow__connectionline path {
+  stroke: var(--edge-stroke);
+  stroke-width: 2.3;
+}
+
+.react-flow__controls,
+.react-flow__minimap {
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  background: var(--controls-bg);
+}
+
+.react-flow__minimap {
+  width: 260px;
+  height: 160px;
+}
+
+.react-flow__minimap-mask {
+  fill: var(--minimap-mask-fill);
+}
+
+.react-flow__controls button {
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--controls-button-bg);
+  box-shadow: none;
+}
+
+.react-flow__controls .react-flow__controls-interactive {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.react-flow__controls .react-flow__controls-interactive.active {
+  background: var(--controls-active-bg);
+  color: var(--controls-active-text);
+}
+
+.react-flow__controls button:last-child {
+  border-bottom: 0;
+}
+
+.minimap-toggle-panel {
+  pointer-events: auto;
+  margin: 10px;
+}
+
+.minimap-toggle-panel.with-minimap {
+  margin-bottom: 182px;
+}
+
+.minimap-toggle-button {
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--toggle-bg);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  padding: 0.45rem 0.7rem;
+  font-size: 0.77rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.minimap-toggle-button:hover {
+  border-color: var(--hover-border);
+  box-shadow: var(--hover-shadow);
+}
+
+.node-editor {
+  background: var(--editor-bg);
+  padding: 1rem;
+  overflow: auto;
+}
+
+.node-editor-empty {
+  margin: 0;
+  border: 1px dashed var(--editor-empty-border);
+  border-radius: 14px;
+  background: var(--editor-empty-bg);
+  color: var(--muted);
+  padding: 0.88rem;
+}
+
+.node-editor-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.82rem;
+}
+
+.node-editor-form h3 {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--editor-title);
+}
+
+.node-editor-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--editor-label);
+}
+
+.node-editor-form textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.node-editor-hint {
+  margin: 0;
+  border: 1px solid var(--hint-border);
+  border-radius: 12px;
+  background: var(--hint-bg);
+  color: var(--hint-text);
+  padding: 0.58rem 0.7rem;
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.context-menu-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  pointer-events: none;
+}
+
+.context-menu-modal {
+  position: fixed;
+  z-index: 1201;
+  min-width: 220px;
+  padding: 0.4rem;
+  border: 1px solid var(--menu-border);
+  border-radius: 14px;
+  background: var(--menu-bg);
+  box-shadow: var(--menu-shadow);
+  backdrop-filter: blur(8px);
+  pointer-events: auto;
+}
+
+.context-menu-item {
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--menu-item-text);
+  padding: 0.5rem 0.66rem;
+  text-align: left;
+  font-size: 0.83rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.context-menu-item:hover {
+  background: var(--menu-item-hover);
+}
+
+.context-menu-item:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.context-menu-item.danger {
+  color: var(--menu-danger-text);
+}
+
+.context-menu-item.danger:hover {
+  background: var(--menu-danger-hover);
+}
+
+button.danger {
+  border-color: var(--danger-border);
+  background: var(--danger-bg);
+  color: var(--danger);
+  padding: 0.52rem 0.66rem;
+  font-weight: 700;
+}
+
+.empty-state {
+  margin: auto;
+  max-width: 480px;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--empty-bg);
+  box-shadow: var(--shadow-md);
+  padding: 1.2rem 1.45rem;
+}
+
+.empty-state h2 {
+  margin: 0;
+  font-size: 1.16rem;
+  letter-spacing: -0.015em;
+}
+
+.empty-state p {
+  margin: 0.56rem 0 0;
+  color: var(--muted);
+}
+
+@media (max-width: 1180px) {
+  .app-shell {
+    grid-template-columns: 220px 1fr;
+  }
+
+  .workflow-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .workflow-toolbar input {
+    width: min(100%, 320px);
+  }
+
+  .editor-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(470px, 1fr) auto;
+  }
+
+  .canvas-wrap {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    min-height: 500px;
+  }
+}
