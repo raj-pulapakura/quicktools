@@ -2,6 +2,8 @@
 
 QuickTools is a Tauri 2 + React desktop app for defining and running workflow graphs of launch actions.
 
+<img width="1512" height="946" alt="Screenshot 2026-03-01 at 10 45 47 am" src="https://github.com/user-attachments/assets/2206ac82-7513-4339-ba55-32ad0d67dcd0" />
+
 ## Stack
 - Tauri 2 (Rust backend)
 - React + Vite frontend
